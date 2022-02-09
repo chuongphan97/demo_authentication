@@ -1,15 +1,19 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/demo_authentication
-    username: root
-    password: 061097
+#    url: jdbc:mysql://localhost:3306/demo_authentication
+#    username: root
+#    password: 2110
+    url: jdbc:postgresql://ec2-44-193-188-118.compute-1.amazonaws.com:5432/dccarf8memp79g
+    username: mndsxltlxgbgwv
+    password: 70cedc7315ba54f788345a01d71ecb6aef448c904a023636a9cb893f8628bfab
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect:  org.hibernate.dialect.PostgreSQLDialect
+#        dialect: org.hibernate.dialect.MySQL5Dialect
   security:
     oauth2:
       client:
