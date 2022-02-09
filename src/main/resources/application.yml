@@ -25,18 +25,18 @@ spring:
             scope:
               - email
               - profile
-#          facebook:
-#            clientId: 121189305185277
-#            clientSecret: 42ffe5aa7379e8326387e0fe16f34132
-#            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}" # Note that facebook now mandates the use of https redirect URIs, so make sure your app supports https in production
-#            scope:
-#              - email
-#              - public_profile
-#        provider:
-#          facebook:
-#            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
-#            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
-#            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+          facebook:
+            clientId: 908269743196302
+            clientSecret: 80378ff6f26e5d8f669dbfe4d3ef7ab6
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}" # Note that facebook now mandates the use of https redirect URIs, so make sure your app supports https in production
+            scope:
+              - email
+              - public_profile
+        provider:
+          facebook:
+            authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
+            userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
 app:
   jwtSecret: 9a02115a835ee03d5fb83cd8a468ea33e4090aaaec87f53c9fa54512bbef4db8dc656c82a315fa0c785c08b0134716b81ddcd0153d2a7556f2e154912cf5675f
   jwtExpirationInMs: 604800000
