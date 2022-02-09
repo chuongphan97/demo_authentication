@@ -35,6 +35,15 @@ public class TokenProvider {
                 .compact();
     }
 
+    public String createRefreshToken(Authentication authentication) {
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+
+        return Jwts.builder()
+                .setSubject(String.valueOf(userPrincipal.getId()))
+                .signWith(SignatureAlgorithm.HS512, appProperties.getAuth().getTokenSecret())
+                .compact();
+    }
+
     public Long getUserIdFromToken(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(appProperties.getAuth().getTokenSecret())
