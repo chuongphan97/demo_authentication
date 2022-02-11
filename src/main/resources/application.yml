@@ -7,7 +7,7 @@ spring:
 #    username: mndsxltlxgbgwv
 #    password: 70cedc7315ba54f788345a01d71ecb6aef448c904a023636a9cb893f8628bfab
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: update
     properties:

@@ -6,6 +6,7 @@ import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -22,8 +23,7 @@ public class TokenProvider {
     }
 
     public String createToken(Authentication authentication) {
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-
+        UserPrincipal userPrincipal = castToUserPrincipal((OAuth2User) authentication.getPrincipal());
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + appProperties.getAuth().getTokenExpirationMsec());
 
@@ -35,8 +35,17 @@ public class TokenProvider {
                 .compact();
     }
 
+    private UserPrincipal castToUserPrincipal(OAuth2User oAuth2User) {
+        String password = (String) oAuth2User.getAttributes().get("password");
+        String name = (String) oAuth2User.getAttributes().get("name");
+        Long id = (Long) oAuth2User.getAttributes().get("id");
+        String email = (String) oAuth2User.getAttributes().get("email");
+        String username = (String) oAuth2User.getAttributes().get("username");
+
+        return new UserPrincipal(id, name, username, email, password, oAuth2User.getAuthorities());
+    }
     public String createRefreshToken(Authentication authentication) {
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        UserPrincipal userPrincipal = castToUserPrincipal((OAuth2User) authentication.getPrincipal());
 
         return Jwts.builder()
                 .setSubject(String.valueOf(userPrincipal.getId()))

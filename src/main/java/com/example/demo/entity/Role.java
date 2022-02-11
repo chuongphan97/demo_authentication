@@ -2,6 +2,9 @@ package com.example.demo.entity;
 
 import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -14,6 +17,9 @@ public class Role {
     @NaturalId
     @Column(length = 60)
     private RoleName name;
+
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    private List<UserRole> roles;
 
     public Role() {
 
