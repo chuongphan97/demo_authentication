@@ -62,6 +62,8 @@ public class OAuth2AuthenticatorSuccessHandler extends SimpleUrlAuthenticationSu
 
         String token = tokenProvider.createToken(authentication);
 
+        CookieUtils.addCookie(response, "access-token", token, 864000000);
+
         return UriComponentsBuilder.fromUriString(targetUrl)
                 .queryParam("token", token)
                 .build().toUriString();
